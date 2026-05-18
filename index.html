@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lili | Professional Makeup Artist</title>
+    <meta name="description" content="Lili - Maquilladora profesional. Maquillaje para novias, eventos sociales y clases de automaquillaje.">
+    <meta property="og:title" content="Lili | Professional Makeup Artist">
+    <meta property="og:description" content="Lili - Maquilladora profesional. Maquillaje para novias, eventos sociales y clases de automaquillaje.">
+    <meta property="og:image" content="assets/lili.jpg">
+    <meta property="og:url" content="https://lili-makeup.com">
+    <meta name="theme-color" content="#d4a373">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" 
+    crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="assets/logo_lili.png" alt="Lili Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="reserva.html" class="btn-nav">Reserva</a></li>
+                <li class="lang-dropdown-container">
+                    <button class="lang-dropdown-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>Idioma</span>
+                        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="lang-dropdown-menu">
+                        <li onclick="changeLang('es')"><span style="font-size:1.2rem;">🇪🇸</span> Español</li>
+                        <li onclick="changeLang('en')"><span style="font-size:1.2rem;">🇺🇸</span> English</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="fade-in">Realza tu <br><span>Belleza Natural</span></h1>
+            <p class="fade-in">Maquillaje profesional para novias, eventos y masterclasses.</p>
+            <a href="reserva.html" class="btn-primary fade-in">Agenda tu Cita</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mis Servicios</h2>
+                <p>Opciones personalizadas para cada ocasión especial.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card slide-up">
+                    <div class="service-img">
+                        <img src="./assets/social.png" alt="Maquillaje Social" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Experiencia Social</h3>
+                        <p>Perfecto para graduaciones, fiestas, fotografía y eventos especiales. Resalta tus facciones con un look glamoroso y sofisticado.</p>
+                         <a href="detalles-servicio.html?type=social" class="btn-outline">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <div class="service-card featured-service slide-up" style="transition-delay: 0.1s;">
+                    <div class="service-img">
+                        <img src="./assets/foto2.jpg" alt="Maquillaje para Novias" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Experiencia Novias y Novios</h3>
+                        <p>Luce radiante en el día más importante de tu vida con un maquillaje de larga duración, resistente al agua y diseñado especialmente para ti.</p>
+                        <br>
+                         <a href="detalles-servicio.html?type=novias" class="btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <div class="service-card slide-up" style="transition-delay: 0.2s;">
+                    <div class="service-img">
+                        <img src="assets/Quince años-El momento de renacer..png" alt="Experiencia 15 Años" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Experiencia 15 Años</h3>
+                        <p>Descubre el look perfecto para tu día soñado. Un maquillaje fresco, duradero y juvenil para resaltar tu belleza en esta fecha tan especial.</p>
+                         <a href="detalles-servicio.html?type=15" class="btn-outline">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos Section -->
+    <section id="cursos" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cursos de Maquillaje </h2>
+                <p>Aprende de la mano de una profesional.</p>
+            </div>
+            
+            <div class="cursos-layout">
+                <!-- Curso Principal (Izquierda) -->
+                <div class="service-card curso-main slide-up">
+                    <div class="service-img">
+                        <img src="assets/foto3.jpg" alt="Consultoría de Imagen & Styling" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Consultoría de Imagen & Styling</h3>
+                        <p>Transforma tu presencia con nuestra asesoría integral premium. Descubre tu paleta de colores ideal, define tu estilo personal y domina las técnicas para proyectar tu mejor versión con total seguridad y elegancia.</p>
+                        <a href="detalles-servicio.html" class="btn-primary">Reservar Asesoría</a>
+                    </div>
+                </div>
+
+                <!-- Curso Secundario 1 (Arriba Derecha) -->
+                <div class="service-card slide-up bg-dark" style="transition-delay: 0.1s; background-color: var(--dark); color: white;">
+                    <div class="service-info" style="justify-content: center;">
+                        <h3 style="color: white; font-size: 1.6rem;">Masterclass de Automaquillaje</h3>
+                        <p style="color: #e0e0e0; font-size: 0.95rem;">Aprende a destacar tus facciones, qué productos te favorecen y las técnicas correctas para un look impecable. Ideal para perfeccionar tu estilo diario.</p>
+                        <a href="detalles-servicio.html" class="btn-outline" style="border-color: var(--primary); color: var(--primary);">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Curso Secundario 2 (Abajo Derecha) -->
+                <div class="service-card slide-up" style="transition-delay: 0.2s; background-color:#fff;">
+                    <div class="service-info" style="justify-content: center;">
+                        <h3 style="font-size: 1.6rem;">Especialización Bridal</h3>
+                        <p style="font-size: 0.95rem;">Curso avanzado diseñado para profesionales. Aprenderás preparación de piel, larga duración, fotografía y las tendencias actuales en novias.</p>
+                        <a href="detalles-servicio.html" class="btn-outline" style="border-color: var(--dark); color: var(--dark);">Más Información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Portafolio</h2>
+                <p>Una muestra de mi trabajo y estilo.</p>
+            </div>
+
+            <div class="carousel-wrapper fade-in">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <!-- Slide 1: Full -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/novia2-2.jpeg" alt="Novia" class="img-full leaf-all" loading="lazy">
+                        </div>
+                        <!-- Slide 2: Stacked Half -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/foto2.jpg" alt="Detalle" class="img-half leaf-all" loading="lazy">
+                            <img src="assets/novios.jpeg" alt="Rostro" class="img-half leaf-all" loading="lazy">
+                        </div>
+                        <!-- Slide 3: Full -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/novia-exterior.jpeg" alt="Novia" class="img-full leaf-all" loading="lazy">
+                        </div>
+                        <!-- Slide 4: Stacked Half -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/novia-crespos.png" alt="Detalle" class="img-half leaf-all" loading="lazy">
+                            <img src="assets/novia-2-1.jpeg" alt="Rostro" class="img-half leaf-all" loading="lazy">
+                        </div>
+                        <!-- Slide 5: Full -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/3.png" alt="Novia" class="img-full leaf-all" loading="lazy">
+                        </div>
+                        <!-- Slide 6: Stacked Half -->
+                        <div class="carousel-slide masonry-col">
+                            <img src="assets/social-frente.png" alt="Detalle" class="img-half leaf-all">
+                            <img src="assets/social.png" alt="Rostro" class="img-half leaf-all">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn">&#10094;</button>
+                <button class="carousel-btn next-btn">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-img fade-in">
+                    <div class="about-img-inner">
+                        <img src="assets/lili.jpg" alt="Lili Maquilladora" loading="lazy">
+                        <div class="shape shape-top-left"></div>
+                        <div class="shape shape-bottom-right"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>Sobre Mí</h2>
+                    <h3>Hola, soy Lili</h3>
+                    <p>Soy una maquilladora profesional apasionada por el arte de resaltar la belleza única de cada persona. Con más de 20 años de experiencia en la industria, me he especializado en maquillaje para novias y editoriales.</p>
+                    <p>Mi filosofía es que el maquillaje no debe enmascarar quién eres, sino celebrar tu esencia y darte la confianza para brillar en cualquier ocasión.</p>
+                    <a href="#contact" class="btn-outline">Contáctame</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-contact-new">
+        <div class="container">
+            <div class="contact-header-new">
+                <p>¿Tienes preguntas? Es posible que tengamos la respuesta en nuestra sección de preguntas frecuentes — ¡Echa un vistazo <a href="#">aquí</a>!</p>
+                <h2>CONTÁCTANOS A TRAVÉS DEL FORMULARIO</h2>
+            </div>
+            <div class="contact-wrapper-new">
+                <div class="contact-info-new">
+                    <div class="info-block">
+                        <h4>EMAIL</h4>
+                        <p>hola@lilimakeup.com</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>TELÉFONO</h4>
+                        <p>+1 234 567 890</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>DIRECCIÓN</h4>
+                        <p>1234 Calle Principal<br>Ciudad, País, 12345</p>
+                    </div>
+                    <div class="info-block social-block">
+                        <h4>REDES SOCIALES</h4>
+                        <div class="social-icons">
+                            <a href="#">IG</a>
+                            <a href="#">FB</a>
+                            <a href="#">IN</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form-new" id="contact-form" action="https://formsubmit.co/juanavjf2002@gmail.com" method="POST">
+                    <!-- Configuración de FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de contacto desde Lili Makeup!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group-new">
+                        <input type="text" name="Nombre" id="wa-name" placeholder="NOMBRE" required>
+                    </div>
+                    <div class="form-group-new">
+                        <input type="tel" name="Teléfono" id="wa-phone" placeholder="TELÉFONO" required>
+                    </div>
+                    <div class="form-group-new">
+                        <input type="email" name="Email" id="wa-email" placeholder="EMAIL" required>
+                    </div>
+                    <div class="form-group-new">
+                        <textarea name="Mensaje" id="wa-message" placeholder="MENSAJE" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit-new">ENVIAR</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="#hero" class="back-to-top">VOLVER ARRIBA &nbsp; <span>↑</span></a>
+            </div>
+            <div class="footer-main">
+                <div class="footer-col subscribe-col">
+                    <h3>MANTENTE AL DÍA</h3>
+                    <p>Suscríbete a nuestro boletín para recibir las últimas novedades, consejos y ofertas exclusivas.</p>
+                    <form class="subscribe-form" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="EMAIL" required>
+                        <button type="submit" class="btn-submit-new" style="margin-top: 1rem; width: max-content;">SUSCRIBIRSE</button>
+                    </form>
+                </div>
+                
+                <div class="footer-col logo-col">
+                    <a href="#" class="footer-logo">
+                        <img src="assets/logo_lili.png" alt="Lili Logo">
+                    </a>
+                    <p class="tagline">Maquillaje profesional para cada ocasión.</p>
+                    <div class="footer-social">
+                        <a href="#">IG</a>
+                        <a href="#">FB</a>
+                        <a href="#">IN</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col nav-col">
+                    <h3>NAVEGAR</h3>
+                    <div class="footer-nav-links">
+                        <ul>
+                            <li><a href="#hero">INICIO</a></li>
+                            <li><a href="#services">SERVICIOS</a></li>
+                            <li><a href="#cursos">CURSOS</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#contact">CONTACTO</a></li>
+                            <li><a href="#about">SOBRE MÍ</a></li>
+                            <li><a href="#">PRIVACIDAD</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; COPYRIGHT 2026 | TODOS LOS DERECHOS RESERVADOS | LILI MAKEUP</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="./assets/whatsapp.png" alt="WhatsApp">
+    </a>
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        // Destruir por completo la barra superior de Google Translate
+        const observer = new MutationObserver(() => {
+            if (document.body && (document.body.style.top || document.body.style.marginTop)) {
+                document.body.style.top = '0px';
+                document.body.style.marginTop = '0px';
+                document.body.style.position = 'static';
+            }
+            document.querySelectorAll('.skiptranslate').forEach(el => {
+                if (el.tagName === 'DIV' || el.tagName === 'IFRAME') {
+                    el.style.display = 'none';
+                    el.style.opacity = '0';
+                    el.style.height = '0px';
+                }
+            });
+            document.querySelectorAll('.goog-te-banner-frame').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        window.changeLang = function(lang) {
+            var select = document.querySelector(".goog-te-combo");
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

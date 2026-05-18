@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier | Liliana Fernández</title>
+    <meta name="description" content="Experiencias bridal diseñadas para novias que desean vivir su gran día con armonía, sofisticación y acompañamiento personalizado.">
+    <meta property="og:title" content="Atelier | Liliana Fernández">
+    <meta property="og:description" content="Descubre nuestras exclusivas experiencias y servicios de maquillaje diseñados a tu medida.">
+    <meta property="og:image" content="assets/lili.jpg">
+    <meta property="og:url" content="https://lili-makeup.com">
+    <meta name="theme-color" content="#d4a373">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nude: {
+                            50: '#FAF7F5',
+                            100: '#F5EBE6',
+                            200: '#EBD6CC',
+                            300: '#E0C2B2',
+                            400: '#D6AD99',
+                            500: '#CC9980',
+                            600: '#B88A73',
+                            700: '#997360',
+                            800: '#7A5C4D',
+                            900: '#5C453A',
+                        },
+                        champagne: '#F7E7CE',
+                        ivory: '#FFFFF0',
+                        gold: {
+                            light: '#F3E5AB',
+                            DEFAULT: '#D4AF37',
+                            dark: '#AA8C2C',
+                        }
+                    },
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'serif'],
+                        poppins: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="atelier-page bg-nude-50 text-nude-900 overflow-x-hidden">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, AnimatePresence } = window.Motion;
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+            const [mobileOpen, setMobileOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: 'Inicio', url: 'index.html#hero' },
+                { name: 'Servicios', url: 'index.html#services' },
+                { name: 'Portafolio', url: 'index.html#portfolio' },
+                { name: 'Cursos', url: 'index.html#cursos' },
+                { name: 'Sobre Mí', url: 'index.html#about' },
+            ];
+
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'glass py-3' : 'bg-transparent py-6'}`}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+                        <a href="index.html" className="flex items-center">
+                            <img src="assets/logo_lili.png" alt="Lili Logo" className={`transition-all duration-500 ${scrolled ? 'h-10' : 'h-14'} ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
+                        </a>
+
+                        {/* Desktop Nav */}
+                        <div className="hidden md:flex items-center space-x-8">
+                            <ul className={`flex space-x-8 font-poppins text-sm tracking-widest uppercase font-medium ${scrolled ? 'text-nude-900' : 'text-white drop-shadow-md'}`}>
+                                {navLinks.map((link) => (
+                                    <li key={link.name}>
+                                        <a href={link.url} className="hover:text-gold transition duration-300 relative group">
+                                            {link.name}
+                                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                            <a href="index.html#contact" className="btn-nav">
+                                Reservar Cita
+                            </a>
+                            <div className="lang-dropdown-container">
+                                <button className="lang-dropdown-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                    <span>Idioma</span>
+                                    <svg className="chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </button>
+                                <ul className="lang-dropdown-menu">
+                                    <li onClick={() => window.changeLang && window.changeLang('es')}><span style={{fontSize: '1.2rem'}}>🇪🇸</span> Español</li>
+                                    <li onClick={() => window.changeLang && window.changeLang('en')}><span style={{fontSize: '1.2rem'}}>🇺🇸</span> English</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Mobile Toggle */}
+                        <button className={`md:hidden focus:outline-none ${scrolled ? 'text-nude-900' : 'text-white'}`} onClick={() => setMobileOpen(!mobileOpen)}>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                {mobileOpen ? (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                )}
+                            </svg>
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    <AnimatePresence>
+                        {mobileOpen && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                className="absolute top-full left-0 w-full glass border-t border-white/20 md:hidden"
+                            >
+                                <ul className="flex flex-col items-center py-6 space-y-4 font-poppins text-sm tracking-widest uppercase text-nude-900">
+                                    {navLinks.map((link) => (
+                                        <li key={link.name}>
+                                            <a href={link.url} className="hover:text-gold transition duration-300" onClick={() => setMobileOpen(false)}>
+                                                {link.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                    <li>
+                                        <a href="reservar.html" className="btn-nav inline-block mt-4" onClick={() => setMobileOpen(false)}>
+                                            Reservar Cita
+                                        </a>
+                                    </li>
+                                    <li className="pt-4 border-t border-nude-200/50 w-3/4 text-center mt-6 flex justify-center items-center gap-6 pb-2">
+                                        <button onClick={() => {window.changeLang && window.changeLang('es'); setMobileOpen(false);}} className="font-poppins flex items-center gap-2 text-sm font-medium text-nude-900 hover:text-gold"><span style={{fontSize: '1.2rem'}}>🇪🇸</span> Español</button>
+                                        <button onClick={() => {window.changeLang && window.changeLang('en'); setMobileOpen(false);}} className="font-poppins flex items-center gap-2 text-sm font-medium text-nude-900 hover:text-gold"><span style={{fontSize: '1.2rem'}}>🇺🇸</span> English</button>
+                                    </li>
+                                </ul>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </nav>
+            );
+        };
+
+        const Hero = ({ data }) => {
+            return (
+                <section className="relative h-screen flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 z-0 bg-nude-900">
+                        <img src={data.heroImage || "assets/novios.jpeg"} alt="Hero Background" className="w-full h-full object-cover object-center opacity-80" />
+                        <div className="absolute inset-0 bg-black/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-nude-900/30 via-transparent to-nude-50"></div>
+                    </div>
+                    
+                    <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="block text-gold-light font-poppins text-sm md:text-base tracking-[0.3em] uppercase mb-4 shadow-black drop-shadow-md"
+                        >
+                            Exclusividad & Sofisticación
+                        </motion.span>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.4 }}
+                            className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-6 drop-shadow-2xl"
+                        >
+                            {data.heroTitle}
+                        </motion.h1>
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: 0.6 }}
+                            className="h-px w-24 bg-gold mx-auto mb-6"
+                        ></motion.div>
+                        <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.8 }}
+                            className="font-playfair italic text-xl md:text-2xl text-white/95 drop-shadow-lg"
+                        >
+                            {data.heroSubtitle}
+                        </motion.p>
+                    </div>
+                    
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
+                    >
+                        <span className="text-nude-900 text-xs font-poppins tracking-widest uppercase mb-2">Descubrir</span>
+                        <div className="w-[1px] h-12 bg-nude-900"></div>
+                    </motion.div>
+                </section>
+            );
+        };
+
+        const Intro = ({ data }) => {
+            return (
+                <section className="py-24 px-6 relative bg-nude-50">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h2 className="font-playfair text-3xl md:text-5xl text-nude-900 mb-2">{data.introTitle}</h2>
+                            <p className="font-poppins text-gold text-sm tracking-[0.2em] uppercase mb-10">By Liliana Fernández</p>
+                            
+                            <p className="font-poppins text-nude-800 text-lg md:text-xl leading-relaxed mb-6 font-light">
+                                {data.introDesc1}
+                            </p>
+                            <p className="font-poppins text-nude-700 leading-relaxed font-light">
+                                {data.introDesc2}
+                            </p>
+                            
+                            <div className="mt-12 flex justify-center">
+                                <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="0" y1="10" x2="50" y2="10" stroke="#D4AF37" strokeWidth="0.5"/>
+                                    <circle cx="60" cy="10" r="3" fill="#D4AF37"/>
+                                    <line x1="70" y1="10" x2="120" y2="10" stroke="#D4AF37" strokeWidth="0.5"/>
+                                </svg>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const PackageCard = ({ title, subtitle, desc, price, includes, index, featured }) => {
+            return (
+                <motion.div 
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className={`relative p-6 ${featured ? 'md:px-8 md:py-12 bg-white shadow-2xl scale-100 md:scale-105 z-10 border border-gold/10' : 'md:p-8 bg-white shadow-lg scale-100 md:scale-95 opacity-95'} rounded-2xl group hover:-translate-y-2 transition-transform duration-500 flex flex-col`}
+                >
+                    {/* Decorative corner borders */}
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold rounded-tl-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-gold rounded-tr-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-gold rounded-bl-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold rounded-br-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div className="text-center mb-6">
+                        <h3 className="font-playfair text-xl md:text-2xl text-nude-900 mb-1 uppercase tracking-wider">{title}</h3>
+                        <h4 className="font-playfair italic text-gold text-lg mb-3">“ {subtitle} ”</h4>
+                        <p className="font-poppins text-sm text-nude-700 font-light leading-relaxed">{desc}</p>
+                    </div>
+
+                    <div className="mb-6 flex-grow">
+                        <h5 className="font-poppins text-[10px] uppercase tracking-[0.15em] text-nude-900 font-bold mb-4 text-center border-b border-nude-200 pb-2">Incluye</h5>
+                        <ul className="space-y-2.5 text-left">
+                            {includes.map((item, i) => (
+                                <li key={i} className="flex items-start">
+                                    <span className="text-gold mr-2.5 mt-0.5 flex-shrink-0 text-[9px]">✦</span>
+                                    <div>
+                                        <p className="font-poppins text-[12px] text-nude-900 font-medium leading-tight">{item.main}</p>
+                                        {item.sub && <p className="font-poppins text-[10px] text-nude-600 mt-0.5 font-light leading-snug">{item.sub}</p>}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="text-center mt-auto pt-6 border-t border-nude-100/50">
+                        <div className="mb-6">
+                            <span className="block font-poppins text-[10px] font-semibold uppercase tracking-widest text-gold mb-2">Valor de la experiencia</span>
+                            <span className="font-playfair text-2xl md:text-3xl text-nude-900 font-medium">{price}</span>
+                        </div>
+                        <a href={`https://wa.me/573113178349?text=Hola,%20me%20interesa%20la%20experiencia%20${encodeURIComponent(title)}`} target="_blank" rel="noreferrer" 
+                           className={`block w-full py-3.5 px-6 rounded-[30px] uppercase text-[11px] tracking-widest font-semibold transition-all duration-300 ${featured ? 'bg-[#D6AD99] text-white hover:bg-[#b88a73] shadow-md hover:shadow-lg' : 'bg-transparent text-nude-900 border-[1.5px] border-nude-900 hover:bg-nude-900 hover:text-white'}`} 
+                           style={{ fontFamily: 'var(--font-text)' }}>
+                            Reservar Experiencia
+                        </a>
+                    </div>
+                </motion.div>
+            );
+        };
+
+        const Packages = ({ data }) => {
+            const pkgs = data.packages;
+
+            return (
+                <section className="py-24 px-6 bg-nude-100 relative">
+                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+                        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-nude-200 blur-3xl"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-champagne blur-3xl"></div>
+                    </div>
+                    <div className="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 items-center relative z-10">
+                        {pkgs.map((pkg, i) => (
+                            <PackageCard key={i} index={i} {...pkg} />
+                        ))}
+                    </div>
+                </section>
+            );
+        };
+
+        const Complementary = ({ data }) => {
+            if (!data.showComplementary) return null;
+            return (
+                <section className="py-24 px-6 bg-nude-900 text-white relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#D4AF37 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+                    <div className="max-w-4xl mx-auto relative z-10">
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="glass-dark p-10 md:p-16 text-center border-gold/30 border"
+                        >
+                            <h2 className="font-playfair text-3xl md:text-4xl text-gold-light mb-6">Experiencias Complementarias Bridal</h2>
+                            <p className="font-poppins text-nude-100 text-lg leading-relaxed mb-8 font-light max-w-2xl mx-auto">
+                                Contamos con un equipo beauty especializado para acompañar la preparación estética de damas de honor, familiares e invitadas durante el gran día.
+                            </p>
+                            
+                            <div className="flex flex-wrap justify-center gap-4 mb-10">
+                                <span className="bg-white/10 px-6 py-2 rounded-full font-poppins text-sm tracking-wider uppercase backdrop-blur-sm border border-white/20">Maquillaje Social</span>
+                                <span className="bg-white/10 px-6 py-2 rounded-full font-poppins text-sm tracking-wider uppercase backdrop-blur-sm border border-white/20">Peinado</span>
+                                <span className="bg-white/10 px-6 py-2 rounded-full font-poppins text-sm tracking-wider uppercase backdrop-blur-sm border border-white/20">Puesta de Pestañas</span>
+                            </div>
+
+                            <div className="mt-8 border-t border-white/20 pt-8">
+                                <span className="block font-poppins text-xs uppercase tracking-widest text-gold mb-2">Valor por persona</span>
+                                <span className="font-playfair text-4xl text-white">$300.000</span>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const InfoBox = ({ data }) => {
+            const infos = data.infoList;
+
+            return (
+                <section className="py-24 px-6 bg-nude-50">
+                    <div className="max-w-4xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h2 className="font-playfair text-3xl text-nude-900 text-center mb-12">Información Importante</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {infos.map((info, i) => (
+                                    <div key={i} className="flex items-start bg-white p-8 shadow-sm border border-nude-100 hover:border-gold/40 transition-colors duration-300">
+                                        <span className="text-gold mr-4 text-xl mt-1">✧</span>
+                                        <p className="font-poppins text-sm text-nude-700 leading-relaxed font-light">{info}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Footer = () => {
+            return (
+                <footer className="site-footer">
+                    <div className="container">
+                        <div className="footer-top">
+                            <a href="#" className="back-to-top" onClick={(e) => {e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});}}>VOLVER ARRIBA &nbsp; <span>↑</span></a>
+                        </div>
+                        <div className="footer-main">
+                            <div className="footer-col subscribe-col">
+                                <h3>MANTENTE AL DÍA</h3>
+                                <p>Suscríbete a nuestro boletín para recibir las últimas novedades, consejos y ofertas exclusivas.</p>
+                                <form className="subscribe-form" onSubmit={(e) => e.preventDefault()}>
+                                    <input type="email" placeholder="EMAIL" required />
+                                    <button type="submit" className="btn-submit-new" style={{ marginTop: '1rem', width: 'max-content' }}>SUSCRIBIRSE</button>
+                                </form>
+                            </div>
+                            
+                            <div className="footer-col logo-col">
+                                <a href="index.html" className="footer-logo">
+                                    <img src="assets/logo_lili.png" alt="Lili Logo" />
+                                </a>
+                                <p className="tagline">Maquillaje profesional para cada ocasión.</p>
+                                <div className="footer-social">
+                                    <a href="#">IG</a>
+                                    <a href="#">FB</a>
+                                    <a href="#">IN</a>
+                                </div>
+                            </div>
+                            
+                            <div className="footer-col nav-col">
+                                <h3>NAVEGAR</h3>
+                                <div className="footer-nav-links">
+                                    <ul>
+                                        <li><a href="index.html#hero">INICIO</a></li>
+                                        <li><a href="index.html#services">SERVICIOS</a></li>
+                                        <li><a href="index.html#cursos">CURSOS</a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="index.html#contact">CONTACTO</a></li>
+                                        <li><a href="index.html#about">SOBRE MÍ</a></li>
+                                        <li><a href="#">PRIVACIDAD</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer-bottom">
+                            <p>&copy; COPYRIGHT 2026 | TODOS LOS DERECHOS RESERVADOS | LILI MAKEUP</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        const WhatsAppBtn = () => {
+            return (
+                <a href="https://wa.me/573113178349" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/whatsapp.png" alt="WhatsApp" />
+                </a>
+            );
+        };
+
+        const PAGE_DATA = {
+            novias: {
+                heroTitle: "Atelier Bridal",
+                heroSubtitle: "La belleza de tu gran día, elevada a arte.",
+                heroImage: "assets/novios.jpeg",
+                introTitle: "Atelier Bridal Collection",
+                introDesc1: "Experiencias bridal diseñadas para novias que desean vivir su gran día con armonía, sofisticación y acompañamiento personalizado.",
+                introDesc2: "Más que maquillaje y peinado, cada experiencia está creada para resaltar la esencia, seguridad y belleza de cada novia en uno de los momentos más importantes de su vida.",
+                packages: [
+                    {
+                        title: "BRIDAL LUEUR",
+                        subtitle: "La luz",
+                        desc: "Una experiencia bridal creada para novias que ya tienen definida la esencia de su gran día y desean un acompañamiento beauty elegante, delicado y personalizado.",
+                        price: "$1.300.000",
+                        includes: [
+                            { main: "Asesoría de imagen bridal express" },
+                            { main: "Sesión Preview Bridal", sub: "Prueba de maquillaje y peinado para descubrir y perfeccionar el look ideal de la novia." },
+                            { main: "Beauty Styling Bridal para el gran día", sub: "Maquillaje y peinado de la novia." }
+                        ]
+                    },
+                    {
+                        title: "BRIDAL ÉTERNELLE",
+                        subtitle: "Lo eterno",
+                        desc: "Experiencia de lujo para novios que desean acompañamiento integral, asesoría personalizada y una preparación impecable.",
+                        price: "$5.500.000",
+                        featured: true,
+                        includes: [
+                            { main: "Asesoría de imagen bridal para los novios" },
+                            { main: "Dirección de imagen & Styling Bridal", sub: "Acompañamiento en elección de vestido y accesorios." },
+                            { main: "Diseño de color para la novia" },
+                            { main: "Terapia capilar para la novia" },
+                            { main: "Barber Experience para el novio" },
+                            { main: "Sesión Preview Bridal", sub: "Prueba de maquillaje y peinado para la novia." },
+                            { main: "Preview Groom Experience", sub: "Prueba de barbería y maquillaje social para el novio." },
+                            { main: "Beauty Styling Bridal", sub: "Maquillaje y peinado de la novia en su gran día." },
+                            { main: "Bridal Beauty Assistance", sub: "Retoques y perfeccionamiento final antes del gran momento." },
+                            { main: "Beauty Service", sub: "Maquillaje y peinado para madres de los novios." },
+                            { main: "Beauty Styling pre-boda", sub: "Maquillaje y peinado de novia para cóctel." }
+                        ]
+                    },
+                    {
+                        title: "BRIDAL ÉTOILE",
+                        subtitle: "La estrella",
+                        desc: "Diseñada para novias que desean una preparación estética más completa, acompañamiento y tranquilidad para vivir su gran día con seguridad.",
+                        price: "$1.800.000",
+                        includes: [
+                            { main: "Asesoría de imagen bridal para la novia y el novio" },
+                            { main: "Sesión Preview Bridal", sub: "Prueba completa de maquillaje y peinado para la novia." },
+                            { main: "Beauty Styling Bridal para el gran día", sub: "Maquillaje y peinado de la novia." },
+                            { main: "Bridal Beauty Assistance", sub: "Acompañamiento, retoques y perfeccionamiento final hasta la salida al altar." },
+                            { main: "Beauty Service", sub: "Maquillaje y peinado para la madre de la novia." }
+                        ]
+                    }
+                ],
+                showComplementary: true,
+                infoList: [
+                    "La experiencia BRIDAL ÉTERNELLE incluye servicio a domicilio dentro de Medellín.",
+                    "Las experiencias BRIDAL LUEUR y BRIDAL ÉTOILE incluyen atención en estudio.",
+                    "En caso de requerir desplazamiento fuera de Medellín o zonas de cobertura urbana, se adicionará un valor de domicilio según ubicación.",
+                    "Para eventos con acompañantes o grupos bridal, contamos con equipo de trabajo preparado para brindar una experiencia armónica y organizada durante toda la jornada."
+                ]
+            },
+            social: {
+                heroTitle: "Atelier Social",
+                heroSubtitle: "Resalta tu belleza en tus eventos más especiales.",
+                heroImage: "assets/social.png",
+                introTitle: "Atelier Social Collection",
+                introDesc1: "Diseñado para hacerte brillar en tus eventos, graduaciones, galas y momentos inolvidables.",
+                introDesc2: "Un maquillaje y peinado que resalta tus mejores facciones, garantizando una duración impecable y un look sofisticado toda la noche.",
+                packages: [
+                    {
+                        title: "SOCIAL GLAM",
+                        subtitle: "La esencia",
+                        desc: "Look impecable para eventos de día o tarde. Resalta tu belleza natural con elegancia.",
+                        price: "$150.000",
+                        includes: [
+                            { main: "Preparación de piel básica" },
+                            { main: "Maquillaje HD" },
+                            { main: "Pestañas postizas clásicas" }
+                        ]
+                    },
+                    {
+                        title: "SOCIAL ELEGANCE",
+                        subtitle: "El impacto",
+                        desc: "Look completo para galas y eventos de noche con máxima duración.",
+                        price: "$250.000",
+                        featured: true,
+                        includes: [
+                            { main: "Preparación de piel avanzada" },
+                            { main: "Maquillaje HD a prueba de agua" },
+                            { main: "Pestañas postizas premium" },
+                            { main: "Kit de retoque básico" }
+                        ]
+                    },
+                    {
+                        title: "SOCIAL VIP",
+                        subtitle: "La exclusividad",
+                        desc: "Asesoría y look premium para quienes desean una experiencia de lujo.",
+                        price: "$400.000",
+                        includes: [
+                            { main: "Asesoría de imagen previa" },
+                            { main: "Preparación de piel VIP con mascarillas" },
+                            { main: "Maquillaje HD a prueba de agua" },
+                            { main: "Pestañas de mink (reutilizables)" },
+                            { main: "Kit de retoque de lujo" }
+                        ]
+                    }
+                ],
+                showComplementary: false,
+                infoList: [
+                    "El servicio SOCIAL VIP incluye atención a domicilio dentro de Medellín.",
+                    "Las experiencias SOCIAL GLAM y SOCIAL ELEGANCE incluyen atención en estudio.",
+                    "En caso de requerir desplazamiento, se adicionará un valor de domicilio según ubicación.",
+                    "Para grupos mayores a 3 personas, contamos con atención especial y equipo de trabajo."
+                ]
+            },
+            '15': {
+                heroTitle: "Atelier 15 Años",
+                heroSubtitle: "Tu sueño hecho realidad.",
+                heroImage: "assets/Quince años-El momento de renacer..png",
+                introTitle: "Atelier 15 Años Collection",
+                introDesc1: "Un acompañamiento mágico para lucir radiante y fresca en el día más soñado.",
+                introDesc2: "Diseñamos un look juvenil y duradero que destaque tu personalidad para que brilles en cada momento de tu celebración.",
+                packages: [
+                    {
+                        title: "SWEET 15",
+                        subtitle: "La dulzura",
+                        desc: "Un look fresco y juvenil para celebrar este día tan especial.",
+                        price: "$200.000",
+                        includes: [
+                            { main: "Preparación de piel juvenil" },
+                            { main: "Maquillaje social quinceañera" },
+                            { main: "Pestañas postizas clásicas" },
+                            { main: "Ondas suaves o peinado semi-recogido" }
+                        ]
+                    },
+                    {
+                        title: "DREAM 15",
+                        subtitle: "El sueño",
+                        desc: "Preparación completa y look deslumbrante de máxima duración.",
+                        price: "$350.000",
+                        featured: true,
+                        includes: [
+                            { main: "Prueba de maquillaje previa" },
+                            { main: "Preparación de piel avanzada" },
+                            { main: "Maquillaje HD quinceañera a prueba de sudor" },
+                            { main: "Pestañas postizas premium" },
+                            { main: "Peinado estructurado" }
+                        ]
+                    },
+                    {
+                        title: "PRINCESS 15",
+                        subtitle: "La magia",
+                        desc: "La experiencia integral para la quinceañera y un acompañante.",
+                        price: "$600.000",
+                        includes: [
+                            { main: "Pruebas de maquillaje y peinado quinceañera" },
+                            { main: "Maquillaje HD y peinado quinceañera" },
+                            { main: "Kit de retoque de lujo" },
+                            { main: "Acompañamiento para cambio de look" },
+                            { main: "Beauty Service Mamá", sub: "Maquillaje social, peinado y pestañas." }
+                        ]
+                    }
+                ],
+                showComplementary: false,
+                infoList: [
+                    "La experiencia PRINCESS 15 incluye servicio a domicilio dentro de Medellín.",
+                    "Para atención fuera de Medellín se adicionará un valor de domicilio según ubicación.",
+                    "El acompañante adicional (hermana, madrina) tiene tarifa especial de $250.000.",
+                    "Las pruebas se realizan en estudio con cita previa."
+                ]
+            }
+        };
+
+        const App = () => {
+            const [data, setData] = useState(PAGE_DATA.novias);
+
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const type = params.get('type');
+                if (type && PAGE_DATA[type]) {
+                    setData(PAGE_DATA[type]);
+                }
+            }, []);
+
+            return (
+                <div className="font-poppins antialiased">
+                    <Navbar />
+                    <Hero data={data} />
+                    <Intro data={data} />
+                    <Packages data={data} />
+                    <Complementary data={data} />
+                    <InfoBox data={data} />
+                    <Footer />
+                    <WhatsAppBtn />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+    
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        // Destruir por completo la barra superior de Google Translate
+        const observer = new MutationObserver(() => {
+            if (document.body && (document.body.style.top || document.body.style.marginTop)) {
+                document.body.style.top = '0px';
+                document.body.style.marginTop = '0px';
+                document.body.style.position = 'static';
+            }
+            document.querySelectorAll('.skiptranslate').forEach(el => {
+                if (el.tagName === 'DIV' || el.tagName === 'IFRAME') {
+                    el.style.display = 'none';
+                    el.style.opacity = '0';
+                    el.style.height = '0px';
+                }
+            });
+            document.querySelectorAll('.goog-te-banner-frame').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,es', autoDisplay: false}, 'google_translate_element');
+        }
+        window.changeLang = function(lang) {
+            var select = document.querySelector(".goog-te-combo");
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

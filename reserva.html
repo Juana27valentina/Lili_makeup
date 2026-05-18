@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu Cita | Lili Makeup</title>
+    <meta name="description" content="Agenda tu cita de maquillaje con Lili. Elige fecha, horario y servicio en minutos.">
+    <meta property="og:title" content="Reserva tu Cita | Lili Makeup">
+    <meta property="og:description" content="Agenda tu cita de maquillaje con Lili. Elige fecha, horario y servicio en minutos.">
+    <meta property="og:image" content="assets/lili.jpg">
+    <meta property="og:url" content="https://lili-makeup.com/reserva.html">
+    <meta name="theme-color" content="#d4a373">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="booking-body">
+
+    <!-- ── BOOKING CARD ── -->
+    <div class="bc-wrapper">
+        <div class="bc-card" id="bc-card">
+
+            <!-- LEFT PANEL -->
+            <aside class="bc-left">
+                <!-- Logo -->
+                <div class="bc-logo-row">
+                    <a href="index.html">
+                        <img src="assets/logo_lili.png" alt="Lili Makeup" class="bc-logo">
+                    </a>
+                </div>
+
+                <!-- Profile -->
+                <div class="bc-profile">
+                    <img src="assets/lili.jpg" alt="Lili" class="bc-avatar">
+                    <span class="bc-name">LILI MAKEUP</span>
+                    <h1 class="bc-title">Asesoría<br>Vía Llamada</h1>
+                </div>
+
+                <!-- Meta -->
+                <ul class="bc-meta">
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        30 – 45 min
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.4 11.47 19.79 19.79 0 01.33 2.84 2 2 0 012.31 1h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 8.4A16 16 0 0015.6 17.1l.76-.76a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        Llamada telefónica
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                        Confirmación por WhatsApp
+                    </li>
+                </ul>
+
+                <!-- Description -->
+                <p class="bc-desc">
+                    Esta llamada es para conocer tu situación, cuál es el look que deseas y determinar el servicio ideal para ti. Sin compromiso — totalmente gratis.
+                </p>
+
+                <!-- Divider -->
+                <div class="bc-sep"></div>
+
+                <!-- Footer links -->
+                <div class="bc-footer-links">
+                    <a href="index.html">← Volver al inicio</a>
+                    <a href="index.html#contact">Política de privacidad</a>
+                </div>
+            </aside>
+
+            <!-- RIGHT PANEL — Step 1: Calendar -->
+            <section class="bc-right" id="bc-right">
+
+                <!-- STEP 1: Calendar -->
+                <div class="bc-step" id="bcs-calendar">
+                    <h2 class="bc-step-title">Selecciona fecha y hora<br><small style="font-size:0.75rem;font-weight:400;color:var(--text-light)">Los días disponibles se muestran con color</small></h2>
+
+                    <div class="bc-cal">
+                        <div class="bc-cal-nav">
+                            <button id="cal-prev" class="bc-nav-btn" aria-label="Mes anterior">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <span id="cal-month-label" class="bc-cal-month"></span>
+                            <button id="cal-next" class="bc-nav-btn" aria-label="Mes siguiente">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                        <div class="bc-cal-weekdays">
+                            <span>DOM</span><span>LUN</span><span>MAR</span>
+                            <span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span>
+                        </div>
+                        <div class="bc-cal-grid" id="cal-days"></div>
+                    </div>
+
+                    <!-- Timezone -->
+                    <div class="bc-timezone">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                        <span id="tz-label">Bogotá, Lima (UTC-5)</span>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Time slots -->
+                <div class="bc-step hidden" id="bcs-slots">
+                    <div class="bc-breadcrumb">
+                        <button class="bc-back-pill" id="slot-back">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                            Cambiar fecha
+                        </button>
+                        <span class="bc-step-count">Paso 2 de 3</span>
+                    </div>
+                    <h2 class="bc-step-title" id="slot-date-label"></h2>
+                    <p class="bc-step-sub">Elige un horario disponible</p>
+                    <div class="bc-slots" id="slots-grid"></div>
+                </div>
+
+                <!-- STEP 3: Form -->
+                <div class="bc-step hidden" id="bcs-form">
+                    <div class="bc-breadcrumb">
+                        <button class="bc-back-pill" id="form-back">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                            Cambiar horario
+                        </button>
+                        <span class="bc-step-count">Paso 3 de 3</span>
+                    </div>
+                    <h2 class="bc-step-title">Ingresa tus datos</h2>
+                    <p class="bc-step-sub" id="form-datetime-label"></p>
+
+                    <form id="booking-form" class="bc-form" novalidate>
+                        <div class="bc-field">
+                            <label for="bf-name">Nombre completo *</label>
+                            <input type="text" id="bf-name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="bc-field">
+                            <label for="bf-email">Correo electrónico *</label>
+                            <input type="email" id="bf-email" placeholder="tu@correo.com" required>
+                        </div>
+                        <div class="bc-field">
+                            <label for="bf-phone">WhatsApp *</label>
+                            <input type="tel" id="bf-phone" placeholder="+57 300 000 0000" required>
+                        </div>
+                        <div class="bc-field">
+                            <label for="bf-service">¿Sobre qué quieres asesoría? *</label>
+                            <select id="bf-service" required>
+                                <option value="" disabled selected>Selecciona un tema</option>
+                                <option>Maquillaje para mi boda</option>
+                                <option>Maquillaje para evento social</option>
+                                <option>Clase de automaquillaje</option>
+                                <option>Información de cursos</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="bc-field">
+                            <label for="bf-notes">Notas <span class="bc-opt">(opcional)</span></label>
+                            <textarea id="bf-notes" rows="3" placeholder="Cuéntame sobre tu evento o estilo..."></textarea>
+                        </div>
+                        <button type="submit" id="bc-submit-btn" class="bc-submit">Reservar Asesoría</button>
+                    </form>
+                </div>
+
+                <!-- STEP 4: Success -->
+                <div class="bc-step hidden" id="bcs-success">
+                    <div class="bc-success">
+                        <div class="bc-success-check">✓</div>
+                        <h2>¡Asesoría Agendada!</h2>
+                        <p class="bc-success-detail" id="success-summary"></p>
+                        <p class="bc-success-hint">Te contactaremos al número registrado. También puedes confirmarnos por WhatsApp o agregar el recordatorio a tu calendario.</p>
+                        <div class="bc-success-btns">
+                            <a id="gcal-link" href="#" target="_blank" class="bc-btn-gcal">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 3h-3V1.5h-1.5V3h-6V1.5H7.5V3H4.5A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zm0 16.5h-15V9h15v10.5z"/></svg>
+                                Google Calendar
+                            </a>
+                            <a id="wa-confirm-link" href="#" target="_blank" class="bc-btn-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                WhatsApp
+                            </a>
+                        </div>
+                        <button class="bc-text-btn" id="success-reset">← Hacer otra reserva</button>
+                    </div>
+                </div>
+
+            </section><!-- /bc-right -->
+        </div><!-- /bc-card -->
+    </div><!-- /bc-wrapper -->
+
+    <script src="booking.js"></script>
+</body>
+</html>
